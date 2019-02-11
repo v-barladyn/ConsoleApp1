@@ -11,51 +11,58 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World");
-            Person NewPerson = new Person(1992, "Tom", 21);
-            Console.WriteLine("Height from method - " + NewPerson.HeightOfPerson());
-            Console.WriteLine("Sex from method - " + NewPerson.ReturnSex());
-            NewPerson.ShowInfo();
+            Person Boy = new Person();            
+            Person Girl = new Person();            
 
         }
     }
 
     class Person
     {
-        public int YearOfBirth { get; set; }
+        public string YearOfBirth { get; set; }
+        public int YearOfBirthInt { get; set; }
         public string Name { get; set; }
 
         public int Height { get; set; }
-        public string Sex = "male";
+        public int Age { get; set; }      
+        public string Sex { get; set; }
 
-        public Person(int yearOfBirth, string name, int height)
-        {
-            YearOfBirth = yearOfBirth;
-            Name = name;
-            Height = height;
-        }
+        public Person() {
 
-        public int HeightOfPerson () {        
+            Console.Write("Enter name: ");
+            Name = Console.ReadLine();
+            Console.Write("Entered name: " + Name);
+
+            Console.Write("Enter Sex: ");
+            Sex = Console.ReadLine();
+            Console.Write("Entered Sex: " + Sex);
+
+            Console.Write("Enter YearOfBirth: ");
+            YearOfBirth = Console.ReadLine();
+            YearOfBirthInt = Convert.ToInt32(YearOfBirth); 
+            Console.WriteLine("Entered YearOfBirth: " + YearOfBirthInt);
             
-            return Height;
+            ShowInfo();
+         
         }
 
-        public string ReturnSex()
-        {
-            return Sex;
-        }
+        public int GetAge()
+        {         
+            Age = Convert.ToInt32(DateTime.Now.Year.ToString()) - YearOfBirthInt; 
+           
+            return Age;
+        }    
 
         public void ShowInfo ()
         {
             Console.WriteLine("New person mane - " + Name);
             Console.WriteLine("Year of birth - " + YearOfBirth);
-            Console.WriteLine("heigst " + Height);
-            Console.WriteLine("Sex " + Sex);
+            Console.WriteLine("Age - " + GetAge());
+            Console.WriteLine("Sex - " + Sex); 
+            
             Console.ReadKey();
 
         }
-
-
-
 
     } 
 }
